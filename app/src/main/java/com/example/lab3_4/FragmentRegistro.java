@@ -17,32 +17,32 @@ public class FragmentRegistro extends Fragment {
 
     FragmentRegistroBinding binding;
 
+    //Crear una lista para de la clase "Mascota" que ya tiene el getter y setter del campo nombre
+    ArrayList<Mascota> listaMascotas = new ArrayList<>();
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentRegistroBinding.inflate(inflater,container,false);
 
 
-        //Crear una lista para de la clase "Mascota" que ya tiene el getter y setter del campo nombre
-        ArrayList<Mascota> listaMascotas = new ArrayList<>();
 
         //Asigna el onClickListener al botón de registro
         binding.buttonRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Obtiene el nombre de la mascota del campo de texto
+                // Obtener los datos ingresados por el usuario
                 String nombreMascota = binding.nombre.getText().toString();
+                String generoMascota = binding.spinnerGenero.getSelectedItem().toString();
+                String nombreDueno = binding.dueno.getText().toString();
+                String dniDueno = binding.dni.getText().toString();
+                String descripcion = binding.descripcion.getText().toString();
 
-                //Crea un objeto Mascota con el nombre ingresado
-                Mascota nuevaMascota = new Mascota(nombreMascota);
+                Mascota nuevaMascota = new Mascota(nombreMascota, generoMascota, nombreDueno, dniDueno, descripcion);
 
-                // Agregar la mascota a la lista
-                MascotaUtil.agregarMascota(nuevaMascota);
+                // Agregar el objeto a la lista de mascotas
+                listaMascotas.add(nuevaMascota);
 
-                // Navegar al fragmento OtroFragment
-                NavHostFragment.findNavController(FragmentRegistro.this).navigate(R.id.action_fragmentRegistro_to_fragmentHome);
-
-                /*
-                //Pasa la lista de mascotas a otro fragmento usando un Bundle
+                // Bundle
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("listaMascotas", (Serializable) listaMascotas);
                 Fragment fragment = new FragmentHistorial();
@@ -50,7 +50,6 @@ public class FragmentRegistro extends Fragment {
                 //Reemplaza el fragmento actual con el nuevo fragmento
                 getFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, fragment).commit();
 
-                 */
 
             }
         });

@@ -9,12 +9,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MascotaAdapter extends RecyclerView.Adapter<MascotaAdapter.MascotaViewHolder> {
 
-    private List<Mascota> mascotas;
-    private Context context;
+    ArrayList<Mascota> mascotas;
+    Context context;
+
+    public MascotaAdapter(Context context, ArrayList<Mascota> arrayList){
+        this.context = context;
+        this.mascotas = arrayList;
+    }
 
     @NonNull
     @Override
@@ -28,10 +34,13 @@ public class MascotaAdapter extends RecyclerView.Adapter<MascotaAdapter.MascotaV
     public void onBindViewHolder(@NonNull MascotaViewHolder holder, int position) {
 
         Mascota m = mascotas.get(position);
-        holder.mascota = m;
+        holder.nombre.setText(m.getNombre());
+        holder.genero.setText(m.getGenero());
+        holder.dueno.setText(m.getNombreDueno());
+        holder.dni.setText(m.getDni());
+        holder.descripcion.setText(m.getDescripcion());
 
-        TextView textViewFirstName = holder.itemView.findViewById(R.id.textViewFirstName);
-        textViewFirstName.setText(m.getNombre());
+
 
     }
 
@@ -44,27 +53,16 @@ public class MascotaAdapter extends RecyclerView.Adapter<MascotaAdapter.MascotaV
     //ViewHolder
     public static class MascotaViewHolder extends RecyclerView.ViewHolder {
 
-        Mascota mascota;
-
+        TextView nombre,genero,dueno,dni,descripcion;
         public MascotaViewHolder(@NonNull View itemView) {
             super(itemView);
+            nombre=itemView.findViewById(R.id.nombre);
+            genero=itemView.findViewById(R.id.genero);
+            dueno=itemView.findViewById(R.id.dueno);
+            dni=itemView.findViewById(R.id.dni);
+            descripcion=itemView.findViewById(R.id.descripcion);
+
         }
-    }
-
-    public List<Mascota> getMascotas() {
-        return mascotas;
-    }
-
-    public void setMascotas(List<Mascota> mascotas) {
-        this.mascotas = mascotas;
-    }
-
-    public Context getContext() {
-        return context;
-    }
-
-    public void setContext(Context context) {
-        this.context = context;
     }
 
 

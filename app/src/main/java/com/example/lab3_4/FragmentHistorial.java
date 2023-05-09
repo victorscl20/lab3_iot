@@ -11,15 +11,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lab3_4.databinding.FragmentHistorialBinding;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FragmentHistorial extends Fragment {
 
     FragmentHistorialBinding binding;
+    MascotaAdapter adapter;
+    RecyclerView recyclerView;
+    ArrayList<Mascota> mascotas;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHistorialBinding.inflate(inflater,container,false);
+
 
         // Obtener la lista de mascotas desde la clase de utilidad
         List<Mascota> mascotas = MascotaUtil.getMascotas();
