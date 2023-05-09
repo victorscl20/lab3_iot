@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragmentHome">
+
+    <fragment
+        android:id="@+id/fragmentRegistro"
+        android:name="com.example.lab3_4.FragmentRegistro"
+        android:label="FragmentRegistro"
+        tools:layout="@layout/fragment_registro" >
+        <action
+            android:id="@+id/action_fragmentRegistro_to_fragmentHome"
+            app:destination="@id/fragmentHome" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentEmergencia"
+        android:name="com.example.lab3_4.FragmentEmergencia"
+        android:label="FragmentEmergencia"
+        tools:layout="@layout/fragment_emergencia"/>
+    <fragment
+        android:id="@+id/fragmentHistorial"
+        android:name="com.example.lab3_4.FragmentHistorial"
+        android:label="FragmentHistorial"
+        tools:layout="@layout/fragment_historial"/>
+    <fragment
+        android:id="@+id/fragmentHome"
+        android:name="com.example.lab3_4.FragmentHome"
+        android:label="FragmentHome"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_fragmentHome_to_fragmentRegistro"
+            app:destination="@id/fragmentRegistro" />
+        <action
+            android:id="@+id/action_fragmentHome_to_fragmentHistorial"
+            app:destination="@id/fragmentHistorial" />
+        <action
+            android:id="@+id/action_fragmentHome_to_fragmentEmergencia"
+            app:destination="@id/fragmentEmergencia" />
+    </fragment>
+</navigation>
